@@ -1,17 +1,21 @@
 package com.example.restfulwebservice.User;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties(value = {"password","name"})
+//@JsonIgnoreProperties(value = {"password","ssn"})
+@JsonFilter("UserInfo")
 public class User { //Lombok사용으로 간단하게 선언만 해줌
     private Integer id;
 

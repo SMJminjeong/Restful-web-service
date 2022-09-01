@@ -45,7 +45,7 @@ public class UserController {
         User savedUser = service.save(user);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id")
+                .path("/id")
                 .buildAndExpand(savedUser.getId())
                 .toUri();
 
