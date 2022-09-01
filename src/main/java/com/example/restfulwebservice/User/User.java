@@ -17,5 +17,6 @@ public class User { //Lombok사용으로 간단하게 선언만 해줌
     private String name;
     //과거 데이터로 지정
     @Past
+    //test
     private Date joinDate;
 }
