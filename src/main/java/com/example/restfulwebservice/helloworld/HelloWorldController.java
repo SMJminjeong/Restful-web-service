@@ -1,11 +1,21 @@
 package com.example.restfulwebservice.helloworld;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Locale;
 
 @RestController
 public class HelloWorldController {
+
+    //어노테이션을 통한 의존성 주입
+    @Autowired
+    private MessageSource source;
+
     // GET 방식의 메서드 형태
     // 지정하고싶은 URI : hello-world (endpoint)
 
@@ -27,5 +37,14 @@ public class HelloWorldController {
         return new HelloWorldBean(String.format("Hello World, %s",  name));
         //%s 문자 가변데이터를 받겠다.
         //String.format() 함수 사용
+    }
+
+    @GetMapping(path = "/hello-world-internationalized")
+    public String helloWorldInternationalized(
+                        @RequestHeader(name = "Accept-Language", required = false) Locale locale){
+        //다국어 지역 설정을 header값에 포함
+        //Accept-Language라는 값이 Header에 포함되지 않았을 경우에는 자동적으로 Locale값이 보이게 된다.
+
+        return source.getMessage("greeting.message",null, locale);
     }
 }
