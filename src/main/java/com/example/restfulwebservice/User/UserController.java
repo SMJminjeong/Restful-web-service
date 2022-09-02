@@ -1,12 +1,18 @@
 package com.example.restfulwebservice.User;
 
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 public class UserController {
@@ -29,14 +35,24 @@ public class UserController {
     //GET /users/1 or /users/10 -> String 형태로 전달
     @GetMapping("/users/{id}")
     //사용자 1명 반환 메서드
-    public User retrieveUser(@PathVariable int id){
+    public EntityModel<User> retrieveUser(@PathVariable int id){
         User user = service.findOne(id);
 
         if(user == null){
             throw new UserNotFoundException(String.format("ID[%s] not found",id));
         }
 
-        return user;
+        //HATEOAS
+//      EntityModel<User> model = EntityModel.of(user,linkTo(methodOn(this.getClass()).retrieveAllUsers()).withRel("all-users"));
+        //매개변수에 위에서 검색된 user변수를 지정
+        EntityModel<User> entityModel = EntityModel.of(user);
+        //user 반환시 추가시킬 수 있는 링크를 추가
+//        WebMvcLinkBuilder linkBuilder = WebMvcLinkBuilder
+//                                        .linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).retrieveAllUsers());
+        WebMvcLinkBuilder linkBuilder = linkTo(methodOn(this.getClass()).retrieveAllUsers());
+        entityModel.add(linkBuilder.withRel("all-users"));
+
+        return entityModel;
     }
 
     //POST 웹 브라우저에서 실행 가능 : html, js, jquery 등 필요

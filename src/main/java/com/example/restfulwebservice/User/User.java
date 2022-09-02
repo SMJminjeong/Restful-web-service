@@ -15,7 +15,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 //@JsonIgnoreProperties(value = {"password","ssn"})
-@JsonFilter("UserInfo")
+//@JsonFilter("UserInfo")
 public class User { //Lombok사용으로 간단하게 선언만 해줌
     private Integer id;
 
