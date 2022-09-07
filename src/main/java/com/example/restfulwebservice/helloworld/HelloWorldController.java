@@ -21,7 +21,7 @@ public class HelloWorldController {
 
     //@RequestMapping()을 사용해왔지만 더 편리한 GetMapping() 사용가능
     //@RequestMapping(method=RequestMethod.GET, path="/hello-world")
-    @GetMapping(path ="/hello-world") //추가로 더 추가할 시 속성도 추가해야 함
+    @GetMapping(path ="/hello-world") //추가로 더 추가할 시 속성도 추가해야 함2
     public String helloWorld(){
         return "Hello World";
     }

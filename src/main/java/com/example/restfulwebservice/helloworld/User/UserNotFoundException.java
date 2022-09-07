@@ -1,4 +1,4 @@
-package com.example.restfulwebservice.User;
+package com.example.restfulwebservice.helloworld.User;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
