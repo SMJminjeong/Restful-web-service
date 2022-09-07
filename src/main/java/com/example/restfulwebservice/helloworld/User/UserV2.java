@@ -1,4 +1,4 @@
-package com.example.restfulwebservice.User;
+package com.example.restfulwebservice.helloworld.User;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lombok.AllArgsConstructor;
