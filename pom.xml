@@ -55,6 +55,7 @@
             <version>2.7.3</version>
         </dependency>
 
+        <!--HAL Browser-->
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-xml</artifactId>
