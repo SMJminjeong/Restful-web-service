@@ -26,7 +26,7 @@ import java.util.*;
 //Swagger 관련 어노테이션
 @EnableSwagger2
 public class SwaggerConfig {
-
+    //spring boot study 09/15
     private static final Contact DEFAULT_CONTACT
             = new Contact("minjeong", "http://www.minjeong.co.kr", "sdwp0920@gmail.com");
 
